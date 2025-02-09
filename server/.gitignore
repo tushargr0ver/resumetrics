@@ -1,0 +1,49 @@
+# Node modules
+/node_modules/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Dependency directories
+jspm_packages/
+
+# Build output
+/dist
+/build
+/.next
+/.nuxt
+
+# Temporary files
+/.vscode/
+.idea/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# npm package lock files (optional, you can choose to keep them)
+package-lock.json
+yarn.lock
+
+# Test directories
+/coverage
+
+# Generated documentation
+/doc
+
+# JetBrains IDEs
+/.idea/
+
+# VS Code settings
+.vscode/
+
+uploads
