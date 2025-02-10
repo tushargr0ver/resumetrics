@@ -1,27 +1,31 @@
 const express = require('express');
-const multer = require('multer');
+const { pdfParser } = require('./utils/pdfParser');
+const { deleteFile } = require('./utils/deleteFile');
+const { upload } = require('./utils/uploader');
 
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-      cb(null, './uploads')
-    },
-    filename: function (req, file, cb) {
-      
-      cb(null, file.originalname)
-    }
-  })
-  
-  const upload = multer({ storage })
+
+
+
 
 const app = express();
 const port = 3000;
 
-app.get('/',(req,res )=>{
-    res.send('Hello world')
-})
-
 app.post('/upload',upload.single('file'),(req,res)=>{
-    res.json(req.file)
+    
+    pdfParser(req.file.filename)
+    .then(()=>{
+      deleteFile(`uploads/${req.file.filename}`)
+      console.log('file uploaded succesfully');
+      res.send('File upload success')
+
+      
+      
+    })
+    .catch(error=>{
+      res.status(500).send(error.message)
+      deleteFile(`uploads/${req.file.filename}`)
+
+    })
 })
 
 app.listen(port, ()=>{
