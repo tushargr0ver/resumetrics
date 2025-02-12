@@ -1,22 +1,27 @@
 const PdfParse = require("pdf-parse")
 const fs = require('fs')
+const { pdfToResult } = require("./openAIService")
 
 
- function pdfParser(pdfname){
-    return new Promise((resolve,reject)=>{
+
+ async function pdfParser(pdfname){
+    try{
         const pdfBuffer = fs.readFileSync(`uploads/${pdfname}`)
-        PdfParse(pdfBuffer)
-        .then(data=>{
-            console.log(data.text);
-            resolve(data.text)
+        const data = await PdfParse(pdfBuffer)
+        
+        const trimData = data.text.split(' ').splice(0,500).join(' ')
+        const result = await pdfToResult(trimData);
+        // console.log(result);
+             
             
-        })
-        .catch(error =>{
+        return result;
+            
+        }
+        catch(error){
             console.log(error);
-            reject(error)
+            throw(error)
             
-        })
-    })
-}
+        }
+    }
 
 module.exports = {pdfParser}
