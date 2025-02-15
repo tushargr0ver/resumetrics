@@ -6,7 +6,8 @@ const cors = require('cors');
 
 const allowedOrigins = [
   'http://localhost:5173',
-  'https://resumetrics.tushr.tech'
+  'https://resumetrics.tushr.tech',
+  'https://resumetrics.vercel.app/'
 ]
 
 const app = express();
