@@ -5,7 +5,8 @@ const { upload } = require('./utils/uploader');
 const cors = require('cors');
 
 const allowedOrigins = [
-  'http://localhost:5173'
+  'http://localhost:5173',
+  'https://resumetrics.tushr.tech'
 ]
 
 const app = express();
