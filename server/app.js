@@ -2,16 +2,34 @@ const express = require('express');
 const { pdfParser } = require('./utils/pdfParser');
 const { deleteFile } = require('./utils/deleteFile');
 const { upload } = require('./utils/uploader');
+const cors = require('cors');
 
+const allowedOrigins = [
+  'http://localhost:5173'
+]
 
 const app = express();
+
+app.use(cors({
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  }
+}));
+
+
 const port = 3000;
+
+
 
 app.post('/upload',upload.single('file'),async (req,res)=>{
     try{
 
-    
-    const result = await pdfParser(req.file.filename)
+    const data = await pdfParser(req.file.filename)
+    const result = JSON.parse(data)
     
       
       console.log('file uploaded succesfully');
@@ -19,7 +37,7 @@ app.post('/upload',upload.single('file'),async (req,res)=>{
       
       res.json(result)
       deleteFile(`uploads/${req.file.filename}`)
-      // console.log(result);
+      console.log(result);
       
 
       

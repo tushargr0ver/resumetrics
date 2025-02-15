@@ -11,14 +11,12 @@ const { pdfToResult } = require("./openAIService")
         
         const trimData = data.text.split(' ').splice(0,500).join(' ')
         const result = await pdfToResult(trimData);
-        // console.log(result);
              
             
         return result;
             
         }
         catch(error){
-            console.log(error);
             throw(error)
             
         }

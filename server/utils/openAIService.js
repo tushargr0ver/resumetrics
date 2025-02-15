@@ -9,14 +9,15 @@ const client = new OpenAI({
 
  async function pdfToResult(parsedPdf){
     const system_prompt = `
-    You are an AI assistant to review resumes by user.
-    Analysis should strictly be in json.
-    Objects are four and names are : isResume, score, feedback, suggestions.
-    First check if given text is resume, if not give isResume value false and other objects to be null values.
-    Else give isResume true, and analyse resume based on grammar, clarity, relevance, and other important points.
-    Then put score object value out of 10.
-    Feedback within 100 words (should be concise as possible).
-    Suggestions within 100 words(should be concise as possible).
+    You are an AI resume review assistant.
+    Return a JSON response with four fields: isResume, score, feedback, and suggestions.
+    Check if the input is a resume. If not, set "isResume": false and all other fields to null.
+    If it is a resume:
+    Set "isResume": true.
+    Analyze grammar, clarity, relevance, and overall quality.
+    Assign a "score" out of 10.
+    Provide "feedback" (max 100 words, concise).
+    Give "suggestions" for improvement (max 100 words, concise).
     `
 
    const response = await client.chat.completions.create({
@@ -24,7 +25,6 @@ const client = new OpenAI({
         messages:[{role: "system", content: system_prompt},
             {role:'user', content: parsedPdf}]})
     
-        // console.log(response.choices[0].message.content);
         
         return (response.choices[0].message.content);
         
