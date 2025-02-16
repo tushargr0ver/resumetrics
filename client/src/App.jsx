@@ -9,7 +9,7 @@ import axios from "axios"
 import { useState } from "react"
 
 function App() {
-  const API_URL = import.meta.env.VITE_API_URL
+  const API_URL = import.meta.env.VITE_API_URL + "/upload"
  
   const [isloading, setLoading] = useState('none')
   const [items, setItems] = useState([
