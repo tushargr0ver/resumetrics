@@ -1,0 +1,15 @@
+*{
+    background-color: #111111;
+    color: #fafafa;
+    
+}
+
+.main{
+    @media screen and (min-width : 768px){
+              
+    }
+}
+
+.footer{
+    
+}

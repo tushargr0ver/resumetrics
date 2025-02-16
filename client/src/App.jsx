@@ -7,6 +7,9 @@ import { Alert, Spinner } from "@chakra-ui/react"
 import { DataList } from "@chakra-ui/react"
 import axios from "axios"
 import { useState } from "react"
+import { FaGithub } from "react-icons/fa";
+import { Link } from "@chakra-ui/react"
+
 
 function App() {
   const API_URL = import.meta.env.VITE_API_URL + "/upload"
@@ -56,7 +59,7 @@ function App() {
 
   return (
 
-    <>
+    <div className="main">
     <FileUploadRoot maxW="xl" alignItems="stretch" maxFiles={1} accept={["application/pdf"]} onChange={handleFileUpload}>
       <FileUploadDropzone
         label="Drag and drop your resume"
@@ -82,9 +85,12 @@ function App() {
         </DataList.Item>
       ))}
     </DataList.Root>
+   
+    <Link href="https://github.com/tushargr0ver/resumetrics" className="footer">
+      Checkout on Github <FaGithub />
+    </Link>
 
-
-    </>
+    </div>
     
   )
 
