@@ -10,7 +10,6 @@ import { useState } from "react"
 
 function App() {
   const API_URL = import.meta.env.VITE_API_URL + "/upload"
-  console.log(API_URL);
   
  
   const [isloading, setLoading] = useState('none')
