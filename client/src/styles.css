@@ -6,10 +6,15 @@
 
 .main{
     @media screen and (min-width : 768px){
-              
+        margin-left: 30%;
+        
     }
 }
 
-/* .footer{
+.footer{
+    margin-top: 20%;
+    @media screen and (min-width : 768px){
+        margin-top: 5%
+    }
     
-} */
+}
