@@ -53,7 +53,7 @@ npm install
 ```
 Create a `.env` file in the `client` directory and add:
 ```sh
-VITE_API_URL=http://localhost:5000
+VITE_API_URL=http://localhost:3000
 ```
 Run the client:
 ```sh
